@@ -1,0 +1,14 @@
+import lunar;
+input s1;
+var s2 := relax(s1);
+output o1;
+output o2;
+{
+o1, o2 = 0, 0
+for _ in range(10):
+    rs = lunar.randInt(0, 2**32-1)
+    o1 += lunar.play(s1, rs)
+    o2 += lunar.play(s2, rs)
+}
+// 0-lose, 1-win
+ensures o1 <= o2;

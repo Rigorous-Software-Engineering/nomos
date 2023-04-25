@@ -1,0 +1,11 @@
+import hotel_review;
+input x1;
+var x2 := setFeat(x1, 1, "");
+output d1;
+output d2;
+{
+d1 = hotel_review.predict(x1)
+d2 = hotel_review.predict(x2)
+}
+// 0-pos, 1-neg
+ensures d2 <= d1;

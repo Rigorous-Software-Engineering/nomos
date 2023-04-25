@@ -1,0 +1,110 @@
+Seed set to: 42
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4851
+Bug inputs: 79
+Number of exceptions: 7
+Number of duplicate bugs: 0
+Complete time: 43772.516062021255
+Seed set to: 43
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4821
+Bug inputs: 93
+Number of exceptions: 10
+Number of duplicate bugs: 0
+Complete time: 43222.5091483593
+Seed set to: 44
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4870
+Bug inputs: 72
+Number of exceptions: 9
+Number of duplicate bugs: 0
+Complete time: 41996.11600089073
+Seed set to: 45
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4859
+Bug inputs: 83
+Number of exceptions: 5
+Number of duplicate bugs: 0
+Complete time: 43878.96680498123
+Seed set to: 46
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4858
+Bug inputs: 78
+Number of exceptions: 6
+Number of duplicate bugs: 0
+Complete time: 42609.7347638607
+Seed set to: 47
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4818
+Bug inputs: 89
+Number of exceptions: 5
+Number of duplicate bugs: 0
+Complete time: 43006.24917459488
+Seed set to: 48
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4867
+Bug inputs: 80
+Number of exceptions: 6
+Number of duplicate bugs: 0
+Complete time: 42682.79570412636
+Seed set to: 49
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4832
+Bug inputs: 92
+Number of exceptions: 8
+Number of duplicate bugs: 0
+Complete time: 42810.808082818985
+Seed set to: 50
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4855
+Bug inputs: 79
+Number of exceptions: 6
+Number of duplicate bugs: 0
+Complete time: 42185.730184316635
+Seed set to: 51
+Wrapping the env with a `Monitor` wrapper
+Wrapping the env in a DummyVecEnv.
+Test set size: 690
+Test budget: 5000
+Assertion violation: 0
+Succeeding tests: 4842
+Bug inputs: 84
+Number of exceptions: 6
+Number of duplicate bugs: 0
+Complete time: 42577.27004122734

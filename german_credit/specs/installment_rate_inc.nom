@@ -1,0 +1,32 @@
+import german_credit;
+input x1;
+var v1 := getFeat(x1, 2);
+var v2 := v1 + 1;
+var v3 := randInt(v2, 4);
+var x2 := setFeat(x1, 2, v3);
+output d1;
+output d2;
+{
+d1 = german_credit.predict(x1)
+d2 = german_credit.predict(x2)
+}
+// 0-accept, 1-decline
+ensures d1 <= d2;
+
+/*
+credit_amount: 1
+installment_rate: 2 
+credit_hist: 11-15
+empl_since: 30-34
+job: 50-53
+*/
+
+/*
+import german_credit;
+input x1;
+var x2 := x1[f1 := randomInt(x1.f1, 100)];
+requires x1.f1 < x2.f1;
+
+import german_credit;
+{x2 == x1[f1 := *] && x1.f1 < x2.f1} d1 := predict(x1), d2 := predict(x2) {!(d1==0 && d2==0) || d2 > 1};
+*/

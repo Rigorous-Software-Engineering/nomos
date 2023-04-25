@@ -1,0 +1,27 @@
+import compas;
+input x1;
+var v1 := getFeat(x1, 4);
+
+var v2 := v1 + 1;
+var v3 := randInt(v2, 40);
+var x2 := setFeat(x1, 4, v3);
+output d1;
+output d2;
+{
+d1 = compas.predict(x1)
+d2 = compas.predict(x2)
+}
+ensures d1 <= d2;
+
+/*
+COMPAS_LOW = 1
+COMPAS_MEDIUM = 2
+COMPAS_HIGH = 0
+IS_RECID_IDX = 5
+IS_VIOLENT_RECID_IDX = 10
+JUV_FEL_COUNT_IDX = 1
+JUV_MISD_COUNT_IDX = 2
+JUV_OTHER_COUNT_IDX = 3
+PRIORS_COUNT_IDX = 4
+NO_CRIMES_UPPER_BOUND = 30
+*/

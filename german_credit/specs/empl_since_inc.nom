@@ -1,0 +1,23 @@
+import german_credit;
+input x1;
+var v1 := getFeat(x1, -2);
+var v2 := v1 + 1;
+var v3 := randInt(v2, 5);
+var x2 := setFeat(x1, -2, v3);
+output d1;
+output d2;
+{
+d1 = german_credit.predict(x1)
+d2 = german_credit.predict(x2)
+}
+// 0-accept, 1-decline
+ensures d2 <= d1;
+
+/*
+empl_since higher index has more positive effect for acceptance
+credit_amount: 1
+installment_rate: 2 
+credit_hist: 11-15
+empl_since: 30-34
+job: 50-53
+*/

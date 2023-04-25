@@ -1,0 +1,2 @@
+class Seed(object):
+    pass

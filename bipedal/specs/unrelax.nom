@@ -1,0 +1,14 @@
+import bipedal;
+input s1;
+var s2 := unrelax(s1);
+output o1;
+output o2;
+{
+o1, o2 = 0, 0
+for _ in range(10):
+    rs = bipedal.randInt(0, 2**32-1)
+    o1 += bipedal.play(s1, rs)
+    o2 += bipedal.play(s2, rs)
+}
+// 0-lose, 1-win
+ensures o2 <= o1;
