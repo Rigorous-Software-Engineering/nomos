@@ -1,6 +1,6 @@
 # NOMOS
 
-This repository contains our implementation of the NOMOS specification language and its application to testing and re-training of ML models. This language and our testing framework are introduced in our paper "Specifying and Testing _k_-Safety Properties for Machine-Learning Models".
+This repository contains our implementation of the NOMOS specification language and its application to testing and re-training of ML models. This language and our testing framework are introduced in our IJCAI 2023 paper titled as "[Specifying and Testing _k_-Safety Properties for Machine-Learning Models](https://arxiv.org/abs/2206.06054)".
 
 
 ## Spcification Language
