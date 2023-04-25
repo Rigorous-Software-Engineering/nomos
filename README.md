@@ -3,7 +3,7 @@
 This repository contains our implementation of the NOMOS specification language and its application to testing and re-training of ML models. This language and our testing framework are introduced in our IJCAI 2023 paper titled as "[Specifying and Testing _k_-Safety Properties for Machine-Learning Models](https://arxiv.org/abs/2206.06054)".
 
 
-## Spcification Language
+## Specification Language
 
 The NOMOS grammar is presented in the `Nomos.g4` file of the main directory. We use *ANTLR4* for parsing the grammar and the language semantics are implemeted in `lang/MyNomosVisitor.py`. The parser, lexer and other necessary files have to be created using the following command:
 
