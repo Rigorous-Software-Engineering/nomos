@@ -11,7 +11,7 @@ The NOMOS grammar is presented in the `Nomos.g4` file of the main directory. We 
 
 This requires an *ANTLR4* installation, including its *python-runtime*. The above command will generate the parser, lexer and other necessary files under the `lang` folder. `main.py` translates a NOMOS specification into Python3 code, namely the test harness. The following command illustrates how to translate a specification file:
 
-`python3 main.py <benchmark_name> <path_to_spec_file>`
+`python3 main.py <path_to_spec_file>`
 
 `<benchmark_name>` refers to the name of the benchmark that the ML model is traind on. A folder with this name must exist in the main directory and it should contain a file named `helper.py`; this file needs to provide necessary functions for testing the specification such as loading the model and loading inputs. See `compas/helper.py` for an example. `<path_to_spec_file>` refers to the path to the specification file. Check the following section to see where to find the specifications tested in the paper. 
 
