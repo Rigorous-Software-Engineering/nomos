@@ -46,7 +46,7 @@ class Wrapper():
         return nn_state, hi_lvl_state, rand_state
 
     def set_state(self, hi_lvl_state, rand_state):
-        return self.env.reset(state=hi_lvl_state, rand_state=rand_state)
+        return self.env.reset(hi_lvl_state=hi_lvl_state, rand_state=rand_state)
 
     def model_step(self, state, deterministic=True):
         act = None
