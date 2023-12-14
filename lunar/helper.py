@@ -39,14 +39,14 @@ class lunar():
     def setSeed(self, seed):
         random.seed(seed)
     
-    def load(self):
+    def load(self, model_path):
         r = random.randint(0, 2**32-1)
 
         self.game = EW.Wrapper("lunar")
         self.game.create_environment(env_seed=r)
         self.game.create_model("lunar/lunar_org.zip", r)
         
-        poolf = open("lunar/state_pool.p", "rb")
+        poolf = open(model_path, "rb")
         pool = pickle.load(poolf)
         self.inputs = pool
 
