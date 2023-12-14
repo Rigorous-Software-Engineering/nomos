@@ -44,9 +44,9 @@ class lunar():
 
         self.game = EW.Wrapper("lunar")
         self.game.create_environment(env_seed=r)
-        self.game.create_model("lunar/lunar_org.zip", r)
+        self.game.create_model(model_path, r)
         
-        poolf = open(model_path, "rb")
+        poolf = open("lunar/state_pool.p", "rb")
         pool = pickle.load(poolf)
         self.inputs = pool
 
@@ -87,7 +87,7 @@ class lunar():
 
     def play(self, state, rand_seed):
         self.game.env.seed(rand_seed)
-        self.game.set_state(state)
+        self.game.set_state(state, None)
         llvl_state, _, _ = self.game.get_state()
         outcome = self.game.play(llvl_state)
 
