@@ -9,10 +9,12 @@ lunar = lunar()
 rseed = int(sys.argv[1])
 lunar.setSeed(rseed)
 print('Seed set to: ' + str(rseed))
-lunar.load()
+
+model_path = sys.argv[2]
+lunar.load(model_path)
 print('Test set size: ' + str(len(lunar.inputs)))
 
-budget = int(sys.argv[2])
+budget = int(sys.argv[3])
 lunar.budget = budget
 pbar = tqdm(desc='test loop', total=budget)
 while budget > 0:
