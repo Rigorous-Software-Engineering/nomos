@@ -102,8 +102,17 @@ class compas():
         return r
 
     def predict(self, x):
-        x = np.expand_dims(x, axis=0)
-        d = self.model.predict(x)
+        cleaned_x = []
+        for elem in x: 
+            if np.isnan(elem):
+                cleaned_x.append(0)
+            else:
+                cleaned_x.append(elem)
+
+        cleaned_x = np.expand_dims(cleaned_x, axis=0)
+        # x = np.expand_dims(x, axis=0)
+
+        d = self.model.predict(cleaned_x)
          
         try:
             d = np.argmax(d, axis=1)[0]
