@@ -113,6 +113,8 @@ class german_credit():
 
     def predict(self, x):
         x = np.expand_dims(x, axis=0)
+        x = tf.convert_to_tensor(x, dtype = tf.float32)
+        
         d = self.model.predict(x)
 
         try:
