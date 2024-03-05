@@ -31,7 +31,7 @@ class bipedal():
 
         poolf = open("bipedal/state_pool.p", "rb")
         pool = pickle.load(poolf)
-        self.inputs = pool
+        self.inputs = pool[1]
 
         self.mutator = Mutator.BipedalEasyOracleMutator(self.game)
 

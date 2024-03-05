@@ -1,10 +1,6 @@
 import time
-
 import numpy as np
-import sys
-# sys.path.append("..")
 from mod_gym import gym
-# sys.path.append("..")
 from mod_stable_baselines3.stable_baselines3 import PPO
 from mod_stable_baselines3.stable_baselines3.common.policies import ActorCriticPolicy
 
@@ -17,9 +13,7 @@ class Wrapper():
 
     def create_lunar_model(self, load_path, r_seed):
         ppo = PPO(env=self.env, seed=r_seed, policy=ActorCriticPolicy)
-        model = ppo.load(load_path, env=self.env, device="cuda:2")
-        # model = PPO.load(load_path, env=self.env)
-        # PPO.set_random_seed(r_seed)
+        model = ppo.load(load_path, env=self.env, device="cuda:0")
         self.model = model
 
     def create_lunar_environment(self, seed):
