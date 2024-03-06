@@ -8,8 +8,6 @@ def initializeHarness(outfile):
     outfile.write("import sys\n")
     outfile.write("import copy\n")
     outfile.write("import random\n\n")
-    # outfile.write("import tensorflow as tf\n")
-    # outfile.write("from utils import *\n\n")
 
 def main(argv):
     input_stream = FileStream(argv[1])
