@@ -3,8 +3,10 @@ sys.path.append('..')
 from lang.NomosParser import NomosParser
 from lang.NomosVisitor import NomosVisitor
 
+
 class MyNomosVisitor(NomosVisitor):
-    def __init__(self, outfile):
+    def __init__(self, outfile, beam_size=1):
+        self.beam_size     = int(beam_size)
         self.outfile       = outfile
         self.inpVars       = set()
         self.commonVars    = set()
@@ -14,12 +16,19 @@ class MyNomosVisitor(NomosVisitor):
         self.mathOperation = ""
         self.dataset       = ""
         self.currentAssgn  = ""
+        self.commonVarToOutVar = {}
 
     def visitSpec(self, ctx: NomosParser.SpecContext):
         return super().visitSpec(ctx)
 
     def visitImport_(self, ctx: NomosParser.Import_Context):
         self.dataset = ctx.dataset.text
+
+        self.outfile.write("import sys\n")
+        self.outfile.write("import copy\n")
+        self.outfile.write("import time\n")
+        self.outfile.write("import random\n\n")
+        
         self.outfile.write("from tqdm.auto import tqdm\n")
         self.outfile.write("from %s.helper import %s\n" % (self.dataset, self.dataset))
 
@@ -32,42 +41,44 @@ class MyNomosVisitor(NomosVisitor):
         self.outfile.write("model_path = sys.argv[2]\n")
         self.outfile.write("%s.load(model_path)\n" % self.dataset)
         self.outfile.write("print('Test set size: ' + str(len(%s.inputs)))\n\n" % self.dataset)
-            
+
         self.outfile.write("budget = int(sys.argv[3])\n")
-        self.outfile.write("%s.budget = budget\n" % self.dataset)
-        self.outfile.write("pbar = tqdm(desc='test loop', total=budget)\n")
+        self.outfile.write("print('Test budget: ' + str(budget))\n\n")
+
+        if self.dataset == "transpiler":
+            self.outfile.write("%s.beam_size = %d\n" % (self.dataset, self.beam_size))
+            self.outfile.write("print('Beam size set to %d')\n" % self.beam_size)
+
+        self.outfile.write("\npbar = tqdm(desc='test loop', total=budget)\n")
+        self.outfile.write("stime = time.time()\n")
         self.outfile.write("while budget > 0:\n")
-        self.outfile.write("\ttry:\n")
         return super().visitImport_(ctx)
 
     def visitInput_(self, ctx: NomosParser.Input_Context):
-        var = self.visit(ctx.inp)        
+        var = self.visit(ctx.inp)
         if var in self.inpVars:
             message = "WARNING: Multiple input variable instantiation!"
             self.warning(message)
         self.inpVars.add(var)
 
         if self.dataset == "lunar" or self.dataset == "bipedal":
-            self.outfile.write("\t\t%s = %s.randState()\n" % (var, self.dataset))
+            self.outfile.write("\t%s = %s.randState()\n" % (var, self.dataset))
         else:
-            self.outfile.write("\t\t%s = %s.randInput() \n" % (var, self.dataset))
-            # self.outfile.write("\tr = random.randint(0, len(inputs)-1)\n")
-            # self.outfile.write("\t%s, l%s = inputs[r], labels[r]\n" % (var, var[1:] ))
+            self.outfile.write("\t%s = %s.randInput() \n" % (var, self.dataset))
 
     def visitPrecondition(self, ctx: NomosParser.PreconditionContext):
         super().visitPrecondition(ctx)
         if self.condition:
-            self.outfile.write("\n\t\tif not(%s) :\n" % self.condition)
-            self.outfile.write("\t\t\t%s.precond_violtn += 1\n" % self.dataset)
-            self.outfile.write("\t\t\tcontinue\n")
-            # self.outfile.write("\t\tprint(\"Precondition violation!\")\n")
+            self.outfile.write("\n\tif not(%s) :\n" % self.condition)
+            self.outfile.write("\t\t%s.precond_violtn += 1\n" % self.dataset)
+            self.outfile.write("\t\tcontinue\n")
 
     def visitOutput(self, ctx: NomosParser.OutputContext):
         var = self.visit(ctx.out)
         if var in self.outVars:
             message = "WARNING: Multiple output variable instantiation!"
             self.warning(message)
-            
+
         self.outVars.add(var)
 
     def visitPostcondition(self, ctx: NomosParser.PostconditionContext):
@@ -77,36 +88,46 @@ class MyNomosVisitor(NomosVisitor):
             message = "WARNING: Empty postcondition is not allowed!"
             self.warning(message)
 
-        self.outfile.write("\n\n\t\tif %s :\n" % self.condition)
-        # self.outfile.write("\t\tprint(\"No property violation\")\n")
-        self.outfile.write("\t\t\t%s.passed += 1\n" % self.dataset)
-        self.outfile.write("\t\telse:\n")
-        # self.outfile.write("\t\tprint(\"Property violation found!\")\n")
-        self.outfile.write("\t\t\t%s.postcond_violtn += 1\n" % self.dataset)
-        inpvars = "("
-        for iv in list(self.inpVars):
-            inpvars += iv + ", "
-        inpvars = inpvars[:-2]
-        inpvars += ")" 
-        # self.outfile.write("\t\t\t%s.bugs.append(%s)\n" % (self.dataset, inpvars))  not used at the moment
-        self.outfile.write("\t\t\t%s.process_bug()\n" % self.dataset)
-        self.outfile.write("\t\t%s.cur_rand = ()\n" % self.dataset)
-        self.outfile.write("\t\tbudget -= 1\n")
-        self.outfile.write("\t\tpbar.update(1)\n")
-        self.outfile.write("\texcept:\n")
-        # self.outfile.write("\t\tprint('Exception occured! Remaining test budget: %d' % budget)\n" )
-        self.outfile.write("\t\t%s.exceptions += 1\n" % self.dataset)
-        self.outfile.write("\t\t%s.cur_rand = ()\n" % self.dataset)
+        if self.beam_size == 1:
+            self.outfile.write("\n\tif %s :\n" % self.condition)
+            self.outfile.write("\t\t%s.passed += 1\n" % self.dataset)
+            self.outfile.write("\telse:\n")
+            self.outfile.write("\t\t%s.postcond_violtn += 1\n" % self.dataset)
+            self.outfile.write("\t\t%s.process_bug()\n" % self.dataset)
 
-        # summary    
-        self.outfile.write("\nprint('Test budget: ' + str(%s.budget))\n" % self.dataset)
-        self.outfile.write("print('Assertion violation: ' + str(%s.precond_violtn))\n" % self.dataset)
-        self.outfile.write("print('Succeeding tests: ' + str(%s.passed))\n" % self.dataset)
+        elif self.beam_size > 1:
+            self.outfile.write("\n\tis_passed=False\n")
+            loop_itr = ["i", "j", "k", "l"]
+            indentation = "\t"
+            for i in range(len(self.outVars)):
+                li = loop_itr[i]
+                self.outfile.write(indentation*i + "\tfor %s in range(%s):\n" % (li, self.beam_size))
+            for idx, ov in enumerate(self.outVars): self.condition = self.condition.replace(ov, ov+"[%s]" % loop_itr[idx])
+            for cv in self.commonVars: 
+                if cv in self.commonVarToOutVar:
+                    idx = list(self.outVars).index(self.commonVarToOutVar[cv])
+                    self.condition = self.condition.replace(cv, cv+"[%s]" % loop_itr[idx])
+            self.outfile.write(indentation*i + "\t\tif %s :\n" % self.condition)
+            self.outfile.write(indentation*i + "\t\t\t%s.passed += 1\n" % self.dataset)
+            self.outfile.write(indentation*i + "\t\t\tis_passed = True\n")
+            self.outfile.write(indentation*i + "\t\t\tbreak\n")  # crucial
+            self.outfile.write("\tif not is_passed:\n")
+            self.outfile.write("\t\t%s.postcond_violtn += 1\n" % self.dataset)
+            self.outfile.write("\t\t%s.process_bug()\n" % self.dataset)
+
+        self.outfile.write("\tbudget -= 1\n")
+        self.outfile.write("\tpbar.update(1)\n")
+        
+        self.outfile.write("\n%s.wrap_up()\n" % self.dataset)
+        self.outfile.write("etime = time.time()\n")
+
+        # summary
+        self.outfile.write("\nprint('Precondition violation: ' + str(%s.precond_violtn))\n" % self.dataset)
+        self.outfile.write("print('Postcondition violation: ' + str(%s.postcond_violtn))\n" % self.dataset)
+        self.outfile.write("print('Number of duplicate bugs: ' + str(%s.num_dupl_bugs))\n" % self.dataset)
         self.outfile.write("print('Bug inputs: ' + str(len(%s.bug_inps)))\n" % self.dataset)
-        self.outfile.write("print('Number of exceptions: ' + str(%s.exceptions))\n" % self.dataset)
-        # self.outfile.write("num_dupl = %s.deduplicate()\n" % self.dataset)
-        self.outfile.write("print('Number of duplicate bugs:' + str(%s.num_dupl_bugs))" % self.dataset)
-        # %d violations found out of %d tests. %d tests') % (%s)")
+        self.outfile.write("print('Prediction time: ' + str(%s.pred_time))\n" % (self.dataset))
+        self.outfile.write("print('Total time: ', etime-stime)")
 
     def visitAssignment(self, ctx: NomosParser.AssignmentContext):
 
@@ -119,7 +140,7 @@ class MyNomosVisitor(NomosVisitor):
             if lVar in self.assignedVars:
                 message = "WARNING: Single assignment assumption violation! Please check input."
                 self.warning(message)
-            
+
             if isinstance(ctx.left.children[0], NomosParser.CommonvarContext):
                 self.commonVars.add(lVar)
             elif isinstance(ctx.left.children[0], NomosParser.InpvarContext):
@@ -129,8 +150,12 @@ class MyNomosVisitor(NomosVisitor):
                 self.warning(message)
             self.assignedVars.add(lVar)
 
-            func, params = self.visit(ctx.right_rec)
-            self.outfile.write("\t\t%s = %s.%s(%s)\n" % (lVar, self.dataset, func, params))
+            funcCall = self.visit(ctx.right_rec)
+            self.outfile.write("\t%s = %s\n" % (lVar,funcCall))
+            params = funcCall.split("(")[1]
+            for ov in self.outVars: 
+                if ov in params: self.commonVarToOutVar[lVar] = ov
+                
 
         elif self.isInstance(ctx.left, NomosParser.RecVarContext) and self.isInstance(ctx.right_rec, NomosParser.RecNumContext):
             lVar = self.visit(ctx.left)
@@ -148,7 +173,7 @@ class MyNomosVisitor(NomosVisitor):
 
             self.assignedVars.add(lVar)
             num = self.visit(ctx.right_rec)
-            self.outfile.write("\t\t%s = %s\n" % (lVar, num))
+            self.outfile.write("\t%s = %s\n" % (lVar, num))
 
         elif self.isInstance(ctx.left, NomosParser.RecVarContext) and self.isInstance(ctx.right_rec, NomosParser.RecFtrAssContext):
             lVar = self.visit(ctx.left)
@@ -163,7 +188,7 @@ class MyNomosVisitor(NomosVisitor):
             else:
                 message = "WARNING: There is a problem in variable assignment."
                 self.warning(message)
-            
+
             self.assignedVars.add(lVar)
             self.currentAssgn = lVar
 
@@ -171,7 +196,7 @@ class MyNomosVisitor(NomosVisitor):
             if rVar not in self.inpVars:
                 message = "WARNING: Variable %s is not declared!" % rVar
                 self.warning(message)
-            self.outfile.write("\t\t%s = copy.copy(%s)\n" % (lVar, rVar))
+            self.outfile.write("\t%s = copy.copy(%s)\n" % (lVar, rVar))
 
             self.visit(ctx.right_rec)  # recursively calls this method and enters below branch
 
@@ -180,7 +205,7 @@ class MyNomosVisitor(NomosVisitor):
             if lVar in self.assignedVars:
                 message = "WARNING: Single assignment assumption violation! Please check input."
                 self.warning(message)
-            
+
             if isinstance(ctx.left.children[0], NomosParser.CommonvarContext):
                 self.commonVars.add(lVar)
             elif isinstance(ctx.left.children[0], NomosParser.InpvarContext):
@@ -188,13 +213,13 @@ class MyNomosVisitor(NomosVisitor):
             else:
                 message = "WARNING: There is a problem in variable assignment."
                 self.warning(message)
-            
+
             self.assignedVars.add(lVar)
 
             rVar, rFtr = self.visit(ctx.right_rec)
-            self.outfile.write("\t\t%s = %s[%s]\n" % (lVar, rVar, rFtr))
-        
-        elif self.isInstance(ctx.left, NomosParser.RecVarContext) and self.isInstance(ctx.right_math, NomosParser.MathBinaryContext): 
+            self.outfile.write("\t%s = %s[%s]\n" % (lVar, rVar, rFtr))
+
+        elif self.isInstance(ctx.left, NomosParser.RecVarContext) and self.isInstance(ctx.right_math, NomosParser.MathBinaryContext):
             lVar = self.visit(ctx.left)
             if lVar in self.assignedVars:
                 message = "WARNING: Single assignment assumption violation! Please check input."
@@ -202,51 +227,28 @@ class MyNomosVisitor(NomosVisitor):
             if isinstance(ctx.left.children[0], NomosParser.CommonvarContext):
                 self.commonVars.add(lVar)
 
-            self.visit(ctx.right_math)
-            self.outfile.write("\t\t%s = %s\n" %(lVar, self.mathOperation))
-            self.mathOperation = ""
-        # THIS PART CHANGED TO SETFEAT
-        # elif self.isInstance(ctx.left, NomosParser.RecFtrContext) and (self.isInstance(ctx.right, NomosParser.RecNumContext) or self.isInstance(ctx.right, NomosParser.RecEmptyStrContext)): 
-        #     assignedFtr = self.visit(ctx.left)
-        #     if assignedFtr == "pos":
-        #         assignedFtr = 0
-        #     elif assignedFtr == "neg":
-        #         assignedFtr = 1
-        #     val = ctx.right.getText()
-        #     self.outfile.write("\t\t%s[%s] = %s\n" %(self.currentAssgn, assignedFtr, val))
-
-        # elif self.isInstance(ctx.left, NomosParser.RecFtrContext) and self.isInstance(ctx.right, NomosParser.RecFuncContext): 
-        #     assignedFtr = self.visit(ctx.left)
-        #     if assignedFtr == "pos":
-        #         assignedFtr = 0
-        #     elif assignedFtr == "neg":
-        #         assignedFtr = 1
-        #     func, params = self.visit(ctx.right)
-        #     self.outfile.write("\t\t%s[%s] = %s.%s(%s)\n" %(self.currentAssgn, assignedFtr, self.dataset, func, params))
-        
-        # elif self.isInstance(ctx.left, NomosParser.RecFtrContext) and self.isInstance(ctx.right, NomosParser.RecVarFtrContext): 
-        #     assignedFtr = self.visit(ctx.left)
-        #     if assignedFtr == "pos":
-        #         assignedFtr = 0
-        #     elif assignedFtr == "neg":
-        #         assignedFtr = 1
-        #     assigningVar, assigningFtr = self.visit(ctx.right)
-        #     self.outfile.write("\t\t%s[%s] = %s[%s]\n" %(self.currentAssgn, assignedFtr, assigningVar, assigningFtr))
-
-        # elif self.isInstance(ctx.left, NomosParser.RecFtrContext) and self.isInstance(ctx.right, NomosParser.RecMathContext): 
-        #     assignedFtr = self.visit(ctx.left)
-        #     self.visit(ctx.right)
-        #     self.outfile.write("\t\t%s[%s] = %s\n" %(self.currentAssgn, assignedFtr, self.mathOperation))
+            self.mathOperation = ""  # clear before use
+            rmath = self.visit(ctx.right_math)
+            self.outfile.write("\t%s = %s\n" %(lVar, rmath))
 
     def visitExprNot(self, ctx: NomosParser.ExprNotContext):
         self.condition += 'not '
         return super().visitExprNot(ctx)
 
+    def visitExprRec(self, ctx: NomosParser.ExprRecContext):
+        if self.isInstance(ctx.children[0], NomosParser.RecFuncContext):
+            # this is a fucntion call that returns a bool value for either pre- or post-condition
+            funcCall = self.visit(ctx.children[0])
+            self.condition += funcCall
+        elif self.isInstance(ctx.children[0], NomosParser.RecVarContext):
+            var = self.visit(ctx.children[0])
+            self.condition += var
+
     def visitExprPrn(self, ctx: NomosParser.ExprPrnContext):
         self.condition += '( '
-        super().visitExprPrn(ctx)        
+        super().visitExprPrn(ctx)
         self.condition += ' )'
-        
+
     def visitExprBinary(self, ctx: NomosParser.ExprBinaryContext):
         if ctx.AND():
             self.visit(ctx.left)
@@ -255,57 +257,29 @@ class MyNomosVisitor(NomosVisitor):
             self.visit(ctx.left)
             self.condition += " or "
         elif ctx.IMPL():
-            self.condition += "not(" + self.visit(ctx.left) + ") or "
+            self.visit(ctx.left)
+            self.condition = "not(" + self.condition + ") or "
         else:
             message = "WARNING! Unknown binary logic operator."
             self.warning(message)
 
         self.visit(ctx.right)
-        
+
     def visitExprPred(self, ctx: NomosParser.ExprPredContext):
         op = self.visit(ctx.op)
-        if self.isInstance(ctx.left, NomosParser.RecVarContext) and self.isInstance(ctx.right, NomosParser.RecVarContext):
-            lVar = self.visit(ctx.left)
-            rVar = self.visit(ctx.right)
-            pred = "%s %s %s" % (lVar, op, rVar)
-            self.condition += pred
-        elif self.isInstance(ctx.left, NomosParser.RecVarFtrContext) and self.isInstance(ctx.right, NomosParser.RecVarFtrContext):
-            lVar, lFtrInd = self.visit(ctx.left)
-            rVar, rFtrInd = self.visit(ctx.right)
-            pred = "%s[%s] %s %s[%s]" % (lVar, lFtrInd, op, rVar, rFtrInd)
-            self.condition += pred
-        elif self.isInstance(ctx.left, NomosParser.RecVarFtrContext) and self.isInstance(ctx.right, NomosParser.RecNumContext):
-            lVar, ftrInd = self.visit(ctx.left)
-            rVar = self.visit(ctx.right)
-            pred = "%s[%s] %s %s" % (lVar, ftrInd, op, rVar)
-            self.condition += pred
-        elif self.isInstance(ctx.left, NomosParser.RecNumContext) and self.isInstance(ctx.right, NomosParser.RecVarFtrContext):
-            lVar = self.visit(ctx.left)
-            rVar, ftrInd = self.visit(ctx.right)
-            pred = "%s %s %s[%s]" % (lVar, ftrInd, op, rVar)
-            self.condition += pred
-        elif self.isInstance(ctx.left, NomosParser.RecVarContext) and self.isInstance(ctx.right, NomosParser.RecNumContext) or self.isInstance(ctx.left, NomosParser.RecNumContext) and self.isInstance(ctx.right, NomosParser.RecVarContext):  # order might not be preserved but it is fine
-            lVar = self.visit(ctx.left)
-            rVar = self.visit(ctx.right)
-            pred = "%s %s %s" % (lVar, op, rVar)
-            self.condition += pred
-        elif self.isInstance(ctx.left, NomosParser.RecVarContext) and self.isInstance(ctx.right, NomosParser.RecFuncContext):
-            lVar = self.visit(ctx.left)
-            func, params = self.visit(ctx.right)
-            pred = "%s %s %s.%s(%s)" % (lVar, op, self.dataset, func, params)
-        elif self.isInstance(ctx.left, NomosParser.RecFuncContext) and self.isInstance(ctx.right, NomosParser.RecVarContext):
-            func, params = self.visit(ctx.left)
-            rVar = self.visit(ctx.right)
-            pred = "%s.%s(%s) %s %s" % (self.dataset, func, params, op, lVar)
-        else:
-            message = "WARNING! Did not match any rule:", ctx.getText()
-            self.warning(message)
-
+        self.mathOperation = ""  # clear before use
+        lVar = self.visit(ctx.left)
+        self.mathOperation = ""  # clear before use
+        rVar = self.visit(ctx.right)
+        pred = "%s %s %s" % (lVar, op, rVar)
+        self.condition += pred
+        
         return pred
-    
+
+
     def visitMathPrn(self, ctx: NomosParser.MathPrnContext):
         self.mathOperation += '( '
-        super().visitMathPrn(ctx)        
+        super().visitMathPrn(ctx)
         self.mathOperation += ' )'
 
     def visitMathBinary(self, ctx: NomosParser.MathBinaryContext):
@@ -325,54 +299,29 @@ class MyNomosVisitor(NomosVisitor):
 
         self.visit(ctx.right)
 
+        return self.mathOperation
+
     def visitMathRec(self, ctx: NomosParser.MathRecContext):
-        if isinstance(ctx.children[0], NomosParser.RecFuncContext):
-            func_name, params = super().visitMathRec(ctx)
-            self.mathOperation += "%s.%s(%s)" % (self.dataset, func_name, params)
-        else:
-            self.mathOperation += ctx.getText()
-        # return super().visitMathRec(ctx)
-
-    # def visitMathFtr(self, ctx: NomosParser.MathFtrContext):
-    #     var = self.visit(ctx.var)
-    #     if var not in self.inpVars:
-    #         message = "WARNING: Variable %s is not declared!" % var
-    #         self.warning(message)
-    #     feature = self.visit(ctx.ftr)
-    #     if feature == "pos":
-    #         feature = 0
-    #     elif feature == "neg":
-    #         feature = 1
-    #     self.mathOperation += "%s[%s]" % (var, feature)
-
-    # def visitMathFunc(self, ctx: NomosParser.MathFuncContext):
-    #     print(self.mathOperation)
-    #     print(ctx.getText())
-    #     self.mathOperation += ctx.getText()
-
-    # def visitMathCommon(self, ctx: NomosParser.MathCommonContext):
-    #     self.mathOperation += ctx.getText()
-
-    # def visitMathNum(self, ctx: NomosParser.MathNumContext):
-    #     self.mathOperation += str(ctx.NUM())
+        ret = super().visitMathRec(ctx)
+        self.mathOperation += ret
+        return self.mathOperation
+    
 
     def visitProgram(self, ctx: NomosParser.ProgramContext):
         progLines = ctx.prog.text.split('\n')
-        self.outfile.write("\t\t")
-        program = '\n\t\t'.join(progLines[1:-1])
+        self.outfile.write("\t")
+        program = '\n\t'.join(progLines[1:-1])
         program = program.replace("    ", "\t")  # without this tabs-spaces inconsistency occurs
+        program = program + "\n"
         self.outfile.write(program)
 
     def visitRecFunc(self, ctx: NomosParser.RecFuncContext):
         func = ctx.func.text
-
         self.params = []  # will be filled in the next call
         params = self.visit(ctx.params) # this is needed to check if new variable found in right hand side and also for filling params
-        
-        # params = ctx.params.getText()
-        # super().visitRecFunc(ctx)  
+
         params = ','.join(self.params)
-        return func, params
+        return "%s.%s(%s)" % (self.dataset, func, params)
 
     def visitFuncParam(self, ctx: NomosParser.FuncParamContext):
         var = None
@@ -385,27 +334,28 @@ class MyNomosVisitor(NomosVisitor):
             elif ftr == "neg": ftr = "1"
             param = "%s[%s]" % (var, ftr)
             self.params.append(param)
-
+        elif self.isInstance(ctx.param, NomosParser.RecStrContext):
+            self.params.append(ctx.param.getText())
+            
         # if the variable is not defined before
         if var is not None and var not in self.inpVars and var not in self.commonVars:
             message = "WARNING: Variable %s is not declared!" % var
             self.warning(message)
 
         return super().visitFuncParam(ctx)
-    
+
     def visitRecNum(self, ctx: NomosParser.RecNumContext):
         return ctx.NUM().getText()
 
     def visitRecEmptyStr(self, ctx: NomosParser.RecEmptyStrContext):
-        print("here")
         return ctx.EMPTYSTR().getText()
-    
+
     def visitInpvar(self, ctx: NomosParser.InpvarContext):
         return ctx.getText()
 
     def visitOutvar(self, ctx: NomosParser.OutvarContext):
         return ctx.getText()
-    
+
     def visitCommonvar(self, ctx: NomosParser.CommonvarContext):
         return ctx.getText()
 
@@ -414,12 +364,15 @@ class MyNomosVisitor(NomosVisitor):
 
     def visitHlvlFeature(self, ctx: NomosParser.HlvlFeatureContext):
         return ctx.getText()
-    
+
     def visitRecVarFtr(self, ctx: NomosParser.RecVarFtrContext):
         var = self.visit(ctx.var)
         feature = self.visit(ctx.ftr)
         return var, feature
     
+    def visitRecNull(self, ctx: NomosParser.RecNullContext):
+        return "None"
+
     def visitCmpOp(self, ctx: NomosParser.CmpOpContext):
         return ctx.getText()
 

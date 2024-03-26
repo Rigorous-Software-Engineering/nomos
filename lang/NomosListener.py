@@ -1,6 +1,6 @@
-# Generated from Nomos.g4 by ANTLR 4.9
+# Generated from Nomos.g4 by ANTLR 4.13.0
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .NomosParser import NomosParser
 else:
     from NomosParser import NomosParser
@@ -89,6 +89,15 @@ class NomosListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by NomosParser#exprRec.
+    def enterExprRec(self, ctx:NomosParser.ExprRecContext):
+        pass
+
+    # Exit a parse tree produced by NomosParser#exprRec.
+    def exitExprRec(self, ctx:NomosParser.ExprRecContext):
+        pass
+
+
     # Enter a parse tree produced by NomosParser#exprNot.
     def enterExprNot(self, ctx:NomosParser.ExprNotContext):
         pass
@@ -134,6 +143,24 @@ class NomosListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by NomosParser#recStr.
+    def enterRecStr(self, ctx:NomosParser.RecStrContext):
+        pass
+
+    # Exit a parse tree produced by NomosParser#recStr.
+    def exitRecStr(self, ctx:NomosParser.RecStrContext):
+        pass
+
+
+    # Enter a parse tree produced by NomosParser#recNull.
+    def enterRecNull(self, ctx:NomosParser.RecNullContext):
+        pass
+
+    # Exit a parse tree produced by NomosParser#recNull.
+    def exitRecNull(self, ctx:NomosParser.RecNullContext):
+        pass
+
+
     # Enter a parse tree produced by NomosParser#recEmptyStr.
     def enterRecEmptyStr(self, ctx:NomosParser.RecEmptyStrContext):
         pass
@@ -161,21 +188,21 @@ class NomosListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by NomosParser#recVarFtr.
-    def enterRecVarFtr(self, ctx:NomosParser.RecVarFtrContext):
-        pass
-
-    # Exit a parse tree produced by NomosParser#recVarFtr.
-    def exitRecVarFtr(self, ctx:NomosParser.RecVarFtrContext):
-        pass
-
-
     # Enter a parse tree produced by NomosParser#recFunc.
     def enterRecFunc(self, ctx:NomosParser.RecFuncContext):
         pass
 
     # Exit a parse tree produced by NomosParser#recFunc.
     def exitRecFunc(self, ctx:NomosParser.RecFuncContext):
+        pass
+
+
+    # Enter a parse tree produced by NomosParser#recVarFtr.
+    def enterRecVarFtr(self, ctx:NomosParser.RecVarFtrContext):
+        pass
+
+    # Exit a parse tree produced by NomosParser#recVarFtr.
+    def exitRecVarFtr(self, ctx:NomosParser.RecVarFtrContext):
         pass
 
 

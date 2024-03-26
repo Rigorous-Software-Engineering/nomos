@@ -1,6 +1,6 @@
-# Generated from Nomos.g4 by ANTLR 4.9
+# Generated from Nomos.g4 by ANTLR 4.13.0
 from antlr4 import *
-if __name__ is not None and "." in __name__:
+if "." in __name__:
     from .NomosParser import NomosParser
 else:
     from NomosParser import NomosParser
@@ -54,6 +54,11 @@ class NomosVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by NomosParser#exprRec.
+    def visitExprRec(self, ctx:NomosParser.ExprRecContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by NomosParser#exprNot.
     def visitExprNot(self, ctx:NomosParser.ExprNotContext):
         return self.visitChildren(ctx)
@@ -79,6 +84,16 @@ class NomosVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by NomosParser#recStr.
+    def visitRecStr(self, ctx:NomosParser.RecStrContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by NomosParser#recNull.
+    def visitRecNull(self, ctx:NomosParser.RecNullContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by NomosParser#recEmptyStr.
     def visitRecEmptyStr(self, ctx:NomosParser.RecEmptyStrContext):
         return self.visitChildren(ctx)
@@ -94,13 +109,13 @@ class NomosVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by NomosParser#recVarFtr.
-    def visitRecVarFtr(self, ctx:NomosParser.RecVarFtrContext):
+    # Visit a parse tree produced by NomosParser#recFunc.
+    def visitRecFunc(self, ctx:NomosParser.RecFuncContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by NomosParser#recFunc.
-    def visitRecFunc(self, ctx:NomosParser.RecFuncContext):
+    # Visit a parse tree produced by NomosParser#recVarFtr.
+    def visitRecVarFtr(self, ctx:NomosParser.RecVarFtrContext):
         return self.visitChildren(ctx)
 
 

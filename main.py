@@ -23,7 +23,7 @@ def main(argv):
         outfile = open("%s/harnesses/bs_%s/%s/harness_%s.py" % (benchmark, beam_size, prop_order, spec), "w")
     else:
         assert len(argv) == 2, "Please, provide path to spec only."
-        outfile = open("%s/harness_%s.py" % (benchmark, spec), "w")
+        outfile = open("%s/harnesses/harness_%s.py" % (benchmark, spec), "w")
 
     visitor = MyNomosVisitor(outfile)
     _ = visitor.visit(tree)

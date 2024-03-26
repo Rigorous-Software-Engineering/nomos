@@ -1,4 +1,4 @@
-# Generated from Nomos.g4 by ANTLR 4.9
+# Generated from Nomos.g4 by ANTLR 4.13.0
 # encoding: utf-8
 from antlr4 import *
 from io import StringIO
@@ -8,87 +8,78 @@ if sys.version_info[1] > 5:
 else:
 	from typing.io import TextIO
 
-
 def serializedATN():
-    with StringIO() as buf:
-        buf.write("\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\66")
-        buf.write("\u00c3\4\2\t\2\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7")
-        buf.write("\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t\13\4\f\t\f\4\r\t\r\4\16")
-        buf.write("\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22\4\23\t\23")
-        buf.write("\3\2\3\2\7\2)\n\2\f\2\16\2,\13\2\3\2\7\2/\n\2\f\2\16\2")
-        buf.write("\62\13\2\3\2\7\2\65\n\2\f\2\16\28\13\2\3\2\7\2;\n\2\f")
-        buf.write("\2\16\2>\13\2\3\2\3\2\7\2B\n\2\f\2\16\2E\13\2\3\3\3\3")
-        buf.write("\3\3\3\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3")
-        buf.write("\6\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\5\ba\n\b\3")
-        buf.write("\t\3\t\3\t\3\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13")
-        buf.write("\3\13\3\13\3\13\3\13\3\13\3\13\5\13v\n\13\3\13\3\13\3")
-        buf.write("\13\7\13{\n\13\f\13\16\13~\13\13\3\f\3\f\3\f\3\f\3\f\5")
-        buf.write("\f\u0085\n\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3\f\3")
-        buf.write("\f\3\f\3\f\3\f\3\f\6\f\u0096\n\f\r\f\16\f\u0097\5\f\u009a")
-        buf.write("\n\f\3\r\3\r\3\r\3\r\3\r\3\r\5\r\u00a2\n\r\3\r\3\r\3\r")
-        buf.write("\7\r\u00a7\n\r\f\r\16\r\u00aa\13\r\3\16\3\16\3\16\3\16")
-        buf.write("\3\16\5\16\u00b1\n\16\3\17\3\17\3\20\3\20\3\20\3\21\3")
-        buf.write("\21\3\21\3\22\3\22\3\22\3\23\3\23\3\23\5\23\u00c1\n\23")
-        buf.write("\3\23\2\4\24\30\24\2\4\6\b\n\f\16\20\22\24\26\30\32\34")
-        buf.write("\36 \"$\2\t\3\2\4\n\4\2-.\60\60\3\2\32\35\3\2\',\3\2\r")
-        buf.write("\16\3\2\17\20\3\2\22\23\2\u00c6\2&\3\2\2\2\4F\3\2\2\2")
-        buf.write("\6J\3\2\2\2\bN\3\2\2\2\nR\3\2\2\2\fV\3\2\2\2\16`\3\2\2")
-        buf.write("\2\20b\3\2\2\2\22f\3\2\2\2\24u\3\2\2\2\26\u0099\3\2\2")
-        buf.write("\2\30\u00a1\3\2\2\2\32\u00b0\3\2\2\2\34\u00b2\3\2\2\2")
-        buf.write("\36\u00b4\3\2\2\2 \u00b7\3\2\2\2\"\u00ba\3\2\2\2$\u00c0")
-        buf.write("\3\2\2\2&*\5\4\3\2\')\5\6\4\2(\'\3\2\2\2),\3\2\2\2*(\3")
-        buf.write("\2\2\2*+\3\2\2\2+\60\3\2\2\2,*\3\2\2\2-/\5\n\6\2.-\3\2")
-        buf.write("\2\2/\62\3\2\2\2\60.\3\2\2\2\60\61\3\2\2\2\61\66\3\2\2")
-        buf.write("\2\62\60\3\2\2\2\63\65\5\20\t\2\64\63\3\2\2\2\658\3\2")
-        buf.write("\2\2\66\64\3\2\2\2\66\67\3\2\2\2\67<\3\2\2\28\66\3\2\2")
-        buf.write("\29;\5\b\5\2:9\3\2\2\2;>\3\2\2\2<:\3\2\2\2<=\3\2\2\2=")
-        buf.write("?\3\2\2\2><\3\2\2\2?C\5\f\7\2@B\5\22\n\2A@\3\2\2\2BE\3")
-        buf.write("\2\2\2CA\3\2\2\2CD\3\2\2\2D\3\3\2\2\2EC\3\2\2\2FG\7\3")
-        buf.write("\2\2GH\t\2\2\2HI\7\63\2\2I\5\3\2\2\2JK\7\25\2\2KL\5 \21")
-        buf.write("\2LM\7\63\2\2M\7\3\2\2\2NO\7\26\2\2OP\5\"\22\2PQ\7\63")
-        buf.write("\2\2Q\t\3\2\2\2RS\7\27\2\2ST\5\16\b\2TU\7\63\2\2U\13\3")
-        buf.write("\2\2\2VW\7\24\2\2W\r\3\2\2\2XY\5\26\f\2YZ\7\61\2\2Z[\5")
-        buf.write("\26\f\2[a\3\2\2\2\\]\5\26\f\2]^\7\61\2\2^_\5\30\r\2_a")
-        buf.write("\3\2\2\2`X\3\2\2\2`\\\3\2\2\2a\17\3\2\2\2bc\7\30\2\2c")
-        buf.write("d\5\24\13\2de\7\63\2\2e\21\3\2\2\2fg\7\31\2\2gh\5\24\13")
-        buf.write("\2hi\7\63\2\2i\23\3\2\2\2jk\b\13\1\2kl\7/\2\2lv\5\24\13")
-        buf.write("\6mn\7%\2\2no\5\24\13\2op\7&\2\2pv\3\2\2\2qr\5\26\f\2")
-        buf.write("rs\5\34\17\2st\5\26\f\2tv\3\2\2\2uj\3\2\2\2um\3\2\2\2")
-        buf.write("uq\3\2\2\2v|\3\2\2\2wx\f\4\2\2xy\t\3\2\2y{\5\24\13\5z")
-        buf.write("w\3\2\2\2{~\3\2\2\2|z\3\2\2\2|}\3\2\2\2}\25\3\2\2\2~|")
-        buf.write("\3\2\2\2\177\u009a\7\36\2\2\u0080\u009a\7 \2\2\u0081\u0085")
-        buf.write("\5 \21\2\u0082\u0085\5\"\22\2\u0083\u0085\5\36\20\2\u0084")
-        buf.write("\u0081\3\2\2\2\u0084\u0082\3\2\2\2\u0084\u0083\3\2\2\2")
-        buf.write("\u0085\u009a\3\2\2\2\u0086\u009a\5$\23\2\u0087\u0088\5")
-        buf.write(" \21\2\u0088\u0089\7\13\2\2\u0089\u008a\5$\23\2\u008a")
-        buf.write("\u009a\3\2\2\2\u008b\u008c\7\37\2\2\u008c\u008d\7%\2\2")
-        buf.write("\u008d\u008e\5\32\16\2\u008e\u008f\7&\2\2\u008f\u009a")
-        buf.write("\3\2\2\2\u0090\u0095\5 \21\2\u0091\u0092\7#\2\2\u0092")
-        buf.write("\u0093\5\16\b\2\u0093\u0094\7$\2\2\u0094\u0096\3\2\2\2")
-        buf.write("\u0095\u0091\3\2\2\2\u0096\u0097\3\2\2\2\u0097\u0095\3")
-        buf.write("\2\2\2\u0097\u0098\3\2\2\2\u0098\u009a\3\2\2\2\u0099\177")
-        buf.write("\3\2\2\2\u0099\u0080\3\2\2\2\u0099\u0084\3\2\2\2\u0099")
-        buf.write("\u0086\3\2\2\2\u0099\u0087\3\2\2\2\u0099\u008b\3\2\2\2")
-        buf.write("\u0099\u0090\3\2\2\2\u009a\27\3\2\2\2\u009b\u009c\b\r")
-        buf.write("\1\2\u009c\u009d\7%\2\2\u009d\u009e\5\30\r\2\u009e\u009f")
-        buf.write("\7&\2\2\u009f\u00a2\3\2\2\2\u00a0\u00a2\5\26\f\2\u00a1")
-        buf.write("\u009b\3\2\2\2\u00a1\u00a0\3\2\2\2\u00a2\u00a8\3\2\2\2")
-        buf.write("\u00a3\u00a4\f\4\2\2\u00a4\u00a5\t\4\2\2\u00a5\u00a7\5")
-        buf.write("\30\r\5\u00a6\u00a3\3\2\2\2\u00a7\u00aa\3\2\2\2\u00a8")
-        buf.write("\u00a6\3\2\2\2\u00a8\u00a9\3\2\2\2\u00a9\31\3\2\2\2\u00aa")
-        buf.write("\u00a8\3\2\2\2\u00ab\u00b1\5\26\f\2\u00ac\u00ad\5\26\f")
-        buf.write("\2\u00ad\u00ae\7\62\2\2\u00ae\u00af\5\32\16\2\u00af\u00b1")
-        buf.write("\3\2\2\2\u00b0\u00ab\3\2\2\2\u00b0\u00ac\3\2\2\2\u00b1")
-        buf.write("\33\3\2\2\2\u00b2\u00b3\t\5\2\2\u00b3\35\3\2\2\2\u00b4")
-        buf.write("\u00b5\7\f\2\2\u00b5\u00b6\7\36\2\2\u00b6\37\3\2\2\2\u00b7")
-        buf.write("\u00b8\t\6\2\2\u00b8\u00b9\7\36\2\2\u00b9!\3\2\2\2\u00ba")
-        buf.write("\u00bb\t\7\2\2\u00bb\u00bc\7\36\2\2\u00bc#\3\2\2\2\u00bd")
-        buf.write("\u00be\7\21\2\2\u00be\u00c1\7\36\2\2\u00bf\u00c1\t\b\2")
-        buf.write("\2\u00c0\u00bd\3\2\2\2\u00c0\u00bf\3\2\2\2\u00c1%\3\2")
-        buf.write("\2\2\21*\60\66<C`u|\u0084\u0097\u0099\u00a1\u00a8\u00b0")
-        buf.write("\u00c0")
-        return buf.getvalue()
-
+    return [
+        4,1,55,202,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,
+        6,2,7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,
+        2,14,7,14,2,15,7,15,2,16,7,16,2,17,7,17,1,0,1,0,5,0,39,8,0,10,0,
+        12,0,42,9,0,1,0,5,0,45,8,0,10,0,12,0,48,9,0,1,0,5,0,51,8,0,10,0,
+        12,0,54,9,0,1,0,5,0,57,8,0,10,0,12,0,60,9,0,1,0,1,0,5,0,64,8,0,10,
+        0,12,0,67,9,0,1,0,5,0,70,8,0,10,0,12,0,73,9,0,1,1,1,1,1,1,1,1,1,
+        2,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,4,1,4,1,4,1,4,1,5,1,5,1,6,1,6,1,
+        6,1,6,1,6,1,6,1,6,1,6,3,6,101,8,6,1,7,1,7,1,7,1,7,1,8,1,8,1,8,1,
+        8,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,1,9,3,9,123,8,9,1,
+        9,1,9,1,9,5,9,128,8,9,10,9,12,9,131,9,9,1,10,1,10,1,10,1,10,1,10,
+        1,10,1,10,3,10,140,8,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,1,10,
+        1,10,1,10,1,10,1,10,1,10,1,10,1,10,4,10,157,8,10,11,10,12,10,158,
+        3,10,161,8,10,1,11,1,11,1,11,1,11,1,11,1,11,3,11,169,8,11,1,11,1,
+        11,1,11,5,11,174,8,11,10,11,12,11,177,9,11,1,12,1,12,1,12,1,12,1,
+        12,3,12,184,8,12,1,13,1,13,1,14,1,14,1,14,1,15,1,15,1,15,1,16,1,
+        16,1,16,1,17,1,17,1,17,3,17,200,8,17,1,17,0,2,18,22,18,0,2,4,6,8,
+        10,12,14,16,18,20,22,24,26,28,30,32,34,0,7,1,0,2,9,2,0,46,47,49,
+        49,1,0,27,30,1,0,40,45,1,0,12,13,1,0,14,15,1,0,17,18,209,0,36,1,
+        0,0,0,2,74,1,0,0,0,4,78,1,0,0,0,6,82,1,0,0,0,8,86,1,0,0,0,10,90,
+        1,0,0,0,12,100,1,0,0,0,14,102,1,0,0,0,16,106,1,0,0,0,18,122,1,0,
+        0,0,20,160,1,0,0,0,22,168,1,0,0,0,24,183,1,0,0,0,26,185,1,0,0,0,
+        28,187,1,0,0,0,30,190,1,0,0,0,32,193,1,0,0,0,34,199,1,0,0,0,36,40,
+        3,2,1,0,37,39,3,4,2,0,38,37,1,0,0,0,39,42,1,0,0,0,40,38,1,0,0,0,
+        40,41,1,0,0,0,41,46,1,0,0,0,42,40,1,0,0,0,43,45,3,8,4,0,44,43,1,
+        0,0,0,45,48,1,0,0,0,46,44,1,0,0,0,46,47,1,0,0,0,47,52,1,0,0,0,48,
+        46,1,0,0,0,49,51,3,14,7,0,50,49,1,0,0,0,51,54,1,0,0,0,52,50,1,0,
+        0,0,52,53,1,0,0,0,53,58,1,0,0,0,54,52,1,0,0,0,55,57,3,6,3,0,56,55,
+        1,0,0,0,57,60,1,0,0,0,58,56,1,0,0,0,58,59,1,0,0,0,59,61,1,0,0,0,
+        60,58,1,0,0,0,61,65,3,10,5,0,62,64,3,8,4,0,63,62,1,0,0,0,64,67,1,
+        0,0,0,65,63,1,0,0,0,65,66,1,0,0,0,66,71,1,0,0,0,67,65,1,0,0,0,68,
+        70,3,16,8,0,69,68,1,0,0,0,70,73,1,0,0,0,71,69,1,0,0,0,71,72,1,0,
+        0,0,72,1,1,0,0,0,73,71,1,0,0,0,74,75,5,1,0,0,75,76,7,0,0,0,76,77,
+        5,52,0,0,77,3,1,0,0,0,78,79,5,20,0,0,79,80,3,30,15,0,80,81,5,52,
+        0,0,81,5,1,0,0,0,82,83,5,21,0,0,83,84,3,32,16,0,84,85,5,52,0,0,85,
+        7,1,0,0,0,86,87,5,22,0,0,87,88,3,12,6,0,88,89,5,52,0,0,89,9,1,0,
+        0,0,90,91,5,19,0,0,91,11,1,0,0,0,92,93,3,20,10,0,93,94,5,50,0,0,
+        94,95,3,20,10,0,95,101,1,0,0,0,96,97,3,20,10,0,97,98,5,50,0,0,98,
+        99,3,22,11,0,99,101,1,0,0,0,100,92,1,0,0,0,100,96,1,0,0,0,101,13,
+        1,0,0,0,102,103,5,23,0,0,103,104,3,18,9,0,104,105,5,52,0,0,105,15,
+        1,0,0,0,106,107,5,24,0,0,107,108,3,18,9,0,108,109,5,52,0,0,109,17,
+        1,0,0,0,110,111,6,9,-1,0,111,112,5,48,0,0,112,123,3,18,9,5,113,114,
+        5,38,0,0,114,115,3,18,9,0,115,116,5,39,0,0,116,123,1,0,0,0,117,118,
+        3,22,11,0,118,119,3,26,13,0,119,120,3,22,11,0,120,123,1,0,0,0,121,
+        123,3,20,10,0,122,110,1,0,0,0,122,113,1,0,0,0,122,117,1,0,0,0,122,
+        121,1,0,0,0,123,129,1,0,0,0,124,125,10,3,0,0,125,126,7,1,0,0,126,
+        128,3,18,9,4,127,124,1,0,0,0,128,131,1,0,0,0,129,127,1,0,0,0,129,
+        130,1,0,0,0,130,19,1,0,0,0,131,129,1,0,0,0,132,161,5,31,0,0,133,
+        161,5,33,0,0,134,161,5,25,0,0,135,161,5,32,0,0,136,140,3,30,15,0,
+        137,140,3,32,16,0,138,140,3,28,14,0,139,136,1,0,0,0,139,137,1,0,
+        0,0,139,138,1,0,0,0,140,161,1,0,0,0,141,161,3,34,17,0,142,143,5,
+        26,0,0,143,144,5,38,0,0,144,145,3,24,12,0,145,146,5,39,0,0,146,161,
+        1,0,0,0,147,148,3,30,15,0,148,149,5,10,0,0,149,150,3,34,17,0,150,
+        161,1,0,0,0,151,156,3,30,15,0,152,153,5,36,0,0,153,154,3,12,6,0,
+        154,155,5,37,0,0,155,157,1,0,0,0,156,152,1,0,0,0,157,158,1,0,0,0,
+        158,156,1,0,0,0,158,159,1,0,0,0,159,161,1,0,0,0,160,132,1,0,0,0,
+        160,133,1,0,0,0,160,134,1,0,0,0,160,135,1,0,0,0,160,139,1,0,0,0,
+        160,141,1,0,0,0,160,142,1,0,0,0,160,147,1,0,0,0,160,151,1,0,0,0,
+        161,21,1,0,0,0,162,163,6,11,-1,0,163,164,5,38,0,0,164,165,3,22,11,
+        0,165,166,5,39,0,0,166,169,1,0,0,0,167,169,3,20,10,0,168,162,1,0,
+        0,0,168,167,1,0,0,0,169,175,1,0,0,0,170,171,10,2,0,0,171,172,7,2,
+        0,0,172,174,3,22,11,3,173,170,1,0,0,0,174,177,1,0,0,0,175,173,1,
+        0,0,0,175,176,1,0,0,0,176,23,1,0,0,0,177,175,1,0,0,0,178,184,3,20,
+        10,0,179,180,3,20,10,0,180,181,5,51,0,0,181,182,3,24,12,0,182,184,
+        1,0,0,0,183,178,1,0,0,0,183,179,1,0,0,0,184,25,1,0,0,0,185,186,7,
+        3,0,0,186,27,1,0,0,0,187,188,5,11,0,0,188,189,5,31,0,0,189,29,1,
+        0,0,0,190,191,7,4,0,0,191,192,5,31,0,0,192,31,1,0,0,0,193,194,7,
+        5,0,0,194,195,5,31,0,0,195,33,1,0,0,0,196,197,5,16,0,0,197,200,5,
+        31,0,0,198,200,7,6,0,0,199,196,1,0,0,0,199,198,1,0,0,0,200,35,1,
+        0,0,0,16,40,46,52,58,65,71,100,122,129,139,158,160,168,175,183,199
+    ]
 
 class NomosParser ( Parser ):
 
@@ -102,11 +93,12 @@ class NomosParser ( Parser ):
 
     literalNames = [ "<INVALID>", "'import '", "'german_credit'", "'compas'", 
                      "'mnist'", "'speech_command'", "'hotel_review'", "'lunar'", 
-                     "'bipedal'", "'.'", "'v'", "'x'", "'s'", "'d'", "'o'", 
-                     "'f'", "'pos'", "'neg'", "<INVALID>", "'input'", "'output'", 
-                     "'var'", "'requires'", "'ensures'", "'+'", "'-'", "'*'", 
-                     "'/'", "<INVALID>", "<INVALID>", "'\"\"'", "'{'", "'}'", 
-                     "'['", "']'", "'('", "')'", "'<'", "'<='", "'>'", "'>='", 
+                     "'bipedal'", "'transpiler'", "'.'", "'v'", "'x'", "'s'", 
+                     "'d'", "'o'", "'f'", "'pos'", "'neg'", "<INVALID>", 
+                     "'input'", "'output'", "'var'", "'requires'", "'ensures'", 
+                     "'null'", "<INVALID>", "'+'", "'-'", "'*'", "'/'", 
+                     "<INVALID>", "'\"\"'", "<INVALID>", "'{'", "'}'", "'['", 
+                     "']'", "'('", "')'", "'<'", "'<='", "'>'", "'>='", 
                      "'=='", "'!='", "'&&'", "'||'", "'!'", "'==>'", "':='", 
                      "','", "';'" ]
 
@@ -114,12 +106,13 @@ class NomosParser ( Parser ):
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
                       "<INVALID>", "<INVALID>", "<INVALID>", "<INVALID>", 
-                      "<INVALID>", "<INVALID>", "PROGRAM", "INPUT", "OUTPUT", 
-                      "VARKW", "REQUIRES", "ENSURES", "PLUS", "MINUS", "MULT", 
-                      "DIV", "NUM", "FUNC", "EMPTYSTR", "LCBR", "RCBR", 
-                      "LSBR", "RSBR", "LBR", "RBR", "LSS", "LSQ", "GRT", 
-                      "GRQ", "EQL", "NEQ", "AND", "OR", "NOT", "IMPL", "ASS", 
-                      "COMMA", "SEMICOLON", "WS", "COMMENT", "LINE_COMMENT" ]
+                      "<INVALID>", "<INVALID>", "<INVALID>", "PROGRAM", 
+                      "INPUT", "OUTPUT", "VARKW", "REQUIRES", "ENSURES", 
+                      "NULL", "FUNC", "PLUS", "MINUS", "MULT", "DIV", "NUM", 
+                      "EMPTYSTR", "STRING", "LCBR", "RCBR", "LSBR", "RSBR", 
+                      "LBR", "RBR", "LSS", "LSQ", "GRT", "GRQ", "EQL", "NEQ", 
+                      "AND", "OR", "NOT", "IMPL", "ASS", "COMMA", "SEMICOLON", 
+                      "WS", "COMMENT", "LINE_COMMENT" ]
 
     RULE_spec = 0
     RULE_import_ = 1
@@ -163,45 +156,48 @@ class NomosParser ( Parser ):
     T__14=15
     T__15=16
     T__16=17
-    PROGRAM=18
-    INPUT=19
-    OUTPUT=20
-    VARKW=21
-    REQUIRES=22
-    ENSURES=23
-    PLUS=24
-    MINUS=25
-    MULT=26
-    DIV=27
-    NUM=28
-    FUNC=29
-    EMPTYSTR=30
-    LCBR=31
-    RCBR=32
-    LSBR=33
-    RSBR=34
-    LBR=35
-    RBR=36
-    LSS=37
-    LSQ=38
-    GRT=39
-    GRQ=40
-    EQL=41
-    NEQ=42
-    AND=43
-    OR=44
-    NOT=45
-    IMPL=46
-    ASS=47
-    COMMA=48
-    SEMICOLON=49
-    WS=50
-    COMMENT=51
-    LINE_COMMENT=52
+    T__17=18
+    PROGRAM=19
+    INPUT=20
+    OUTPUT=21
+    VARKW=22
+    REQUIRES=23
+    ENSURES=24
+    NULL=25
+    FUNC=26
+    PLUS=27
+    MINUS=28
+    MULT=29
+    DIV=30
+    NUM=31
+    EMPTYSTR=32
+    STRING=33
+    LCBR=34
+    RCBR=35
+    LSBR=36
+    RSBR=37
+    LBR=38
+    RBR=39
+    LSS=40
+    LSQ=41
+    GRT=42
+    GRQ=43
+    EQL=44
+    NEQ=45
+    AND=46
+    OR=47
+    NOT=48
+    IMPL=49
+    ASS=50
+    COMMA=51
+    SEMICOLON=52
+    WS=53
+    COMMENT=54
+    LINE_COMMENT=55
 
     def __init__(self, input:TokenStream, output:TextIO = sys.stdout):
         super().__init__(input, output)
-        self.checkVersion("4.9")
+        self.checkVersion("4.13.0")
         self._interp = ParserATNSimulator(self, self.atn, self.decisionsToDFA, self.sharedContextCache)
         self._predicates = None
 
@@ -209,6 +205,7 @@ class NomosParser ( Parser ):
 
 
     class SpecContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -289,7 +286,7 @@ class NomosParser ( Parser ):
             self.state = 40
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==NomosParser.INPUT:
+            while _la==20:
                 self.state = 37
                 self.input_()
                 self.state = 42
@@ -299,7 +296,7 @@ class NomosParser ( Parser ):
             self.state = 46
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==NomosParser.VARKW:
+            while _la==22:
                 self.state = 43
                 self.vars_()
                 self.state = 48
@@ -309,7 +306,7 @@ class NomosParser ( Parser ):
             self.state = 52
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==NomosParser.REQUIRES:
+            while _la==23:
                 self.state = 49
                 self.precondition()
                 self.state = 54
@@ -319,7 +316,7 @@ class NomosParser ( Parser ):
             self.state = 58
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==NomosParser.OUTPUT:
+            while _la==21:
                 self.state = 55
                 self.output()
                 self.state = 60
@@ -331,10 +328,20 @@ class NomosParser ( Parser ):
             self.state = 65
             self._errHandler.sync(self)
             _la = self._input.LA(1)
-            while _la==NomosParser.ENSURES:
+            while _la==22:
                 self.state = 62
-                self.postcondition()
+                self.vars_()
                 self.state = 67
+                self._errHandler.sync(self)
+                _la = self._input.LA(1)
+
+            self.state = 71
+            self._errHandler.sync(self)
+            _la = self._input.LA(1)
+            while _la==24:
+                self.state = 68
+                self.postcondition()
+                self.state = 73
                 self._errHandler.sync(self)
                 _la = self._input.LA(1)
 
@@ -348,6 +355,7 @@ class NomosParser ( Parser ):
 
 
     class Import_Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -384,17 +392,17 @@ class NomosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 68
+            self.state = 74
             self.match(NomosParser.T__0)
-            self.state = 69
+            self.state = 75
             localctx.dataset = self._input.LT(1)
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << NomosParser.T__1) | (1 << NomosParser.T__2) | (1 << NomosParser.T__3) | (1 << NomosParser.T__4) | (1 << NomosParser.T__5) | (1 << NomosParser.T__6) | (1 << NomosParser.T__7))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 1020) != 0)):
                 localctx.dataset = self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 70
+            self.state = 76
             self.match(NomosParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -406,6 +414,7 @@ class NomosParser ( Parser ):
 
 
     class Input_Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -448,11 +457,11 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 4, self.RULE_input_)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 72
+            self.state = 78
             self.match(NomosParser.INPUT)
-            self.state = 73
+            self.state = 79
             localctx.inp = self.inpvar()
-            self.state = 74
+            self.state = 80
             self.match(NomosParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -464,6 +473,7 @@ class NomosParser ( Parser ):
 
 
     class OutputContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -506,11 +516,11 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 6, self.RULE_output)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 76
+            self.state = 82
             self.match(NomosParser.OUTPUT)
-            self.state = 77
+            self.state = 83
             localctx.out = self.outvar()
-            self.state = 78
+            self.state = 84
             self.match(NomosParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -522,6 +532,7 @@ class NomosParser ( Parser ):
 
 
     class Vars_Context(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -563,11 +574,11 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 8, self.RULE_vars_)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 80
+            self.state = 86
             self.match(NomosParser.VARKW)
-            self.state = 81
+            self.state = 87
             self.assignment()
-            self.state = 82
+            self.state = 88
             self.match(NomosParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -579,6 +590,7 @@ class NomosParser ( Parser ):
 
 
     class ProgramContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -614,7 +626,7 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 10, self.RULE_program)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 84
+            self.state = 90
             localctx.prog = self.match(NomosParser.PROGRAM)
         except RecognitionException as re:
             localctx.exception = re
@@ -626,6 +638,7 @@ class NomosParser ( Parser ):
 
 
     class AssignmentContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -673,26 +686,26 @@ class NomosParser ( Parser ):
         localctx = NomosParser.AssignmentContext(self, self._ctx, self.state)
         self.enterRule(localctx, 12, self.RULE_assignment)
         try:
-            self.state = 94
+            self.state = 100
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,5,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,6,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 86
+                self.state = 92
                 localctx.left = self.record()
-                self.state = 87
+                self.state = 93
                 self.match(NomosParser.ASS)
-                self.state = 88
+                self.state = 94
                 localctx.right_rec = self.record()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 90
+                self.state = 96
                 localctx.left = self.record()
-                self.state = 91
+                self.state = 97
                 self.match(NomosParser.ASS)
-                self.state = 92
+                self.state = 98
                 localctx.right_math = self.math(0)
                 pass
 
@@ -707,6 +720,7 @@ class NomosParser ( Parser ):
 
 
     class PreconditionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -748,11 +762,11 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 14, self.RULE_precondition)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 96
+            self.state = 102
             self.match(NomosParser.REQUIRES)
-            self.state = 97
+            self.state = 103
             self.expr(0)
-            self.state = 98
+            self.state = 104
             self.match(NomosParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -764,6 +778,7 @@ class NomosParser ( Parser ):
 
 
     class PostconditionContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -805,11 +820,11 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 16, self.RULE_postcondition)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 100
+            self.state = 106
             self.match(NomosParser.ENSURES)
-            self.state = 101
+            self.state = 107
             self.expr(0)
-            self.state = 102
+            self.state = 108
             self.match(NomosParser.SEMICOLON)
         except RecognitionException as re:
             localctx.exception = re
@@ -821,6 +836,7 @@ class NomosParser ( Parser ):
 
 
     class ExprContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -833,6 +849,31 @@ class NomosParser ( Parser ):
      
         def copyFrom(self, ctx:ParserRuleContext):
             super().copyFrom(ctx)
+
+
+    class ExprRecContext(ExprContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a NomosParser.ExprContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def record(self):
+            return self.getTypedRuleContext(NomosParser.RecordContext,0)
+
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterExprRec" ):
+                listener.enterExprRec(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitExprRec" ):
+                listener.exitExprRec(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitExprRec" ):
+                return visitor.visitExprRec(self)
+            else:
+                return visitor.visitChildren(self)
 
 
     class ExprNotContext(ExprContext):
@@ -902,16 +943,16 @@ class NomosParser ( Parser ):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a NomosParser.ExprContext
             super().__init__(parser)
-            self.left = None # RecordContext
+            self.left = None # MathContext
             self.op = None # CmpOpContext
-            self.right = None # RecordContext
+            self.right = None # MathContext
             self.copyFrom(ctx)
 
-        def record(self, i:int=None):
+        def math(self, i:int=None):
             if i is None:
-                return self.getTypedRuleContexts(NomosParser.RecordContext)
+                return self.getTypedRuleContexts(NomosParser.MathContext)
             else:
-                return self.getTypedRuleContext(NomosParser.RecordContext,i)
+                return self.getTypedRuleContext(NomosParser.MathContext,i)
 
         def cmpOp(self):
             return self.getTypedRuleContext(NomosParser.CmpOpContext,0)
@@ -972,48 +1013,57 @@ class NomosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 115
+            self.state = 122
             self._errHandler.sync(self)
-            token = self._input.LA(1)
-            if token in [NomosParser.NOT]:
+            la_ = self._interp.adaptivePredict(self._input,7,self._ctx)
+            if la_ == 1:
                 localctx = NomosParser.ExprNotContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 105
+                self.state = 111
                 self.match(NomosParser.NOT)
-                self.state = 106
-                self.expr(4)
+                self.state = 112
+                self.expr(5)
                 pass
-            elif token in [NomosParser.LBR]:
+
+            elif la_ == 2:
                 localctx = NomosParser.ExprPrnContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 107
+                self.state = 113
                 self.match(NomosParser.LBR)
-                self.state = 108
+                self.state = 114
                 self.expr(0)
-                self.state = 109
+                self.state = 115
                 self.match(NomosParser.RBR)
                 pass
-            elif token in [NomosParser.T__9, NomosParser.T__10, NomosParser.T__11, NomosParser.T__12, NomosParser.T__13, NomosParser.T__14, NomosParser.T__15, NomosParser.T__16, NomosParser.NUM, NomosParser.FUNC, NomosParser.EMPTYSTR]:
+
+            elif la_ == 3:
                 localctx = NomosParser.ExprPredContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 111
-                localctx.left = self.record()
-                self.state = 112
+                self.state = 117
+                localctx.left = self.math(0)
+                self.state = 118
                 localctx.op = self.cmpOp()
-                self.state = 113
-                localctx.right = self.record()
+                self.state = 119
+                localctx.right = self.math(0)
                 pass
-            else:
-                raise NoViableAltException(self)
+
+            elif la_ == 4:
+                localctx = NomosParser.ExprRecContext(self, localctx)
+                self._ctx = localctx
+                _prevctx = localctx
+                self.state = 121
+                self.record()
+                pass
+
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 122
+            self.state = 129
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,8,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
@@ -1022,22 +1072,22 @@ class NomosParser ( Parser ):
                     localctx = NomosParser.ExprBinaryContext(self, NomosParser.ExprContext(self, _parentctx, _parentState))
                     localctx.left = _prevctx
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_expr)
-                    self.state = 117
-                    if not self.precpred(self._ctx, 2):
+                    self.state = 124
+                    if not self.precpred(self._ctx, 3):
                         from antlr4.error.Errors import FailedPredicateException
-                        raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 118
+                        raise FailedPredicateException(self, "self.precpred(self._ctx, 3)")
+                    self.state = 125
                     _la = self._input.LA(1)
-                    if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << NomosParser.AND) | (1 << NomosParser.OR) | (1 << NomosParser.IMPL))) != 0)):
+                    if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 774056185954304) != 0)):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
                         self.consume()
-                    self.state = 119
-                    localctx.right = self.expr(3) 
-                self.state = 124
+                    self.state = 126
+                    localctx.right = self.expr(4) 
+                self.state = 131
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,7,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,8,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1049,6 +1099,7 @@ class NomosParser ( Parser ):
 
 
     class RecordContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1177,6 +1228,30 @@ class NomosParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
+    class RecStrContext(RecordContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a NomosParser.RecordContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def STRING(self):
+            return self.getToken(NomosParser.STRING, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterRecStr" ):
+                listener.enterRecStr(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitRecStr" ):
+                listener.exitRecStr(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRecStr" ):
+                return visitor.visitRecStr(self)
+            else:
+                return visitor.visitChildren(self)
+
+
     class RecVarFtrContext(RecordContext):
 
         def __init__(self, parser, ctx:ParserRuleContext): # actually a NomosParser.RecordContext
@@ -1273,45 +1348,83 @@ class NomosParser ( Parser ):
                 return visitor.visitChildren(self)
 
 
+    class RecNullContext(RecordContext):
+
+        def __init__(self, parser, ctx:ParserRuleContext): # actually a NomosParser.RecordContext
+            super().__init__(parser)
+            self.copyFrom(ctx)
+
+        def NULL(self):
+            return self.getToken(NomosParser.NULL, 0)
+
+        def enterRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "enterRecNull" ):
+                listener.enterRecNull(self)
+
+        def exitRule(self, listener:ParseTreeListener):
+            if hasattr( listener, "exitRecNull" ):
+                listener.exitRecNull(self)
+
+        def accept(self, visitor:ParseTreeVisitor):
+            if hasattr( visitor, "visitRecNull" ):
+                return visitor.visitRecNull(self)
+            else:
+                return visitor.visitChildren(self)
+
+
 
     def record(self):
 
         localctx = NomosParser.RecordContext(self, self._ctx, self.state)
         self.enterRule(localctx, 20, self.RULE_record)
         try:
-            self.state = 151
+            self.state = 160
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,10,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,11,self._ctx)
             if la_ == 1:
                 localctx = NomosParser.RecNumContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 125
+                self.state = 132
                 self.match(NomosParser.NUM)
                 pass
 
             elif la_ == 2:
-                localctx = NomosParser.RecEmptyStrContext(self, localctx)
+                localctx = NomosParser.RecStrContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 126
-                self.match(NomosParser.EMPTYSTR)
+                self.state = 133
+                self.match(NomosParser.STRING)
                 pass
 
             elif la_ == 3:
-                localctx = NomosParser.RecVarContext(self, localctx)
+                localctx = NomosParser.RecNullContext(self, localctx)
                 self.enterOuterAlt(localctx, 3)
-                self.state = 130
+                self.state = 134
+                self.match(NomosParser.NULL)
+                pass
+
+            elif la_ == 4:
+                localctx = NomosParser.RecEmptyStrContext(self, localctx)
+                self.enterOuterAlt(localctx, 4)
+                self.state = 135
+                self.match(NomosParser.EMPTYSTR)
+                pass
+
+            elif la_ == 5:
+                localctx = NomosParser.RecVarContext(self, localctx)
+                self.enterOuterAlt(localctx, 5)
+                self.state = 139
                 self._errHandler.sync(self)
                 token = self._input.LA(1)
-                if token in [NomosParser.T__10, NomosParser.T__11]:
-                    self.state = 127
+                if token in [12, 13]:
+                    self.state = 136
                     self.inpvar()
                     pass
-                elif token in [NomosParser.T__12, NomosParser.T__13]:
-                    self.state = 128
+                elif token in [14, 15]:
+                    self.state = 137
                     self.outvar()
                     pass
-                elif token in [NomosParser.T__9]:
-                    self.state = 129
+                elif token in [11]:
+                    self.state = 138
                     self.commonvar()
                     pass
                 else:
@@ -1319,59 +1432,59 @@ class NomosParser ( Parser ):
 
                 pass
 
-            elif la_ == 4:
+            elif la_ == 6:
                 localctx = NomosParser.RecFtrContext(self, localctx)
-                self.enterOuterAlt(localctx, 4)
-                self.state = 132
+                self.enterOuterAlt(localctx, 6)
+                self.state = 141
                 self.feature()
                 pass
 
-            elif la_ == 5:
-                localctx = NomosParser.RecVarFtrContext(self, localctx)
-                self.enterOuterAlt(localctx, 5)
-                self.state = 133
-                localctx.var = self.inpvar()
-                self.state = 134
-                self.match(NomosParser.T__8)
-                self.state = 135
-                localctx.ftr = self.feature()
-                pass
-
-            elif la_ == 6:
+            elif la_ == 7:
                 localctx = NomosParser.RecFuncContext(self, localctx)
-                self.enterOuterAlt(localctx, 6)
-                self.state = 137
+                self.enterOuterAlt(localctx, 7)
+                self.state = 142
                 localctx.func = self.match(NomosParser.FUNC)
-                self.state = 138
+                self.state = 143
                 self.match(NomosParser.LBR)
-                self.state = 139
+                self.state = 144
                 localctx.params = self.funcParam()
-                self.state = 140
+                self.state = 145
                 self.match(NomosParser.RBR)
                 pass
 
-            elif la_ == 7:
-                localctx = NomosParser.RecFtrAssContext(self, localctx)
-                self.enterOuterAlt(localctx, 7)
-                self.state = 142
+            elif la_ == 8:
+                localctx = NomosParser.RecVarFtrContext(self, localctx)
+                self.enterOuterAlt(localctx, 8)
+                self.state = 147
                 localctx.var = self.inpvar()
-                self.state = 147 
+                self.state = 148
+                self.match(NomosParser.T__9)
+                self.state = 149
+                localctx.ftr = self.feature()
+                pass
+
+            elif la_ == 9:
+                localctx = NomosParser.RecFtrAssContext(self, localctx)
+                self.enterOuterAlt(localctx, 9)
+                self.state = 151
+                localctx.var = self.inpvar()
+                self.state = 156 
                 self._errHandler.sync(self)
                 _alt = 1
                 while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                     if _alt == 1:
-                        self.state = 143
+                        self.state = 152
                         self.match(NomosParser.LSBR)
-                        self.state = 144
+                        self.state = 153
                         self.assignment()
-                        self.state = 145
+                        self.state = 154
                         self.match(NomosParser.RSBR)
 
                     else:
                         raise NoViableAltException(self)
-                    self.state = 149 
+                    self.state = 158 
                     self._errHandler.sync(self)
-                    _alt = self._interp.adaptivePredict(self._input,9,self._ctx)
+                    _alt = self._interp.adaptivePredict(self._input,10,self._ctx)
 
                 pass
 
@@ -1386,6 +1499,7 @@ class NomosParser ( Parser ):
 
 
     class MathContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1503,35 +1617,35 @@ class NomosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 159
+            self.state = 168
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [NomosParser.LBR]:
+            if token in [38]:
                 localctx = NomosParser.MathPrnContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
 
-                self.state = 154
+                self.state = 163
                 self.match(NomosParser.LBR)
-                self.state = 155
+                self.state = 164
                 self.math(0)
-                self.state = 156
+                self.state = 165
                 self.match(NomosParser.RBR)
                 pass
-            elif token in [NomosParser.T__9, NomosParser.T__10, NomosParser.T__11, NomosParser.T__12, NomosParser.T__13, NomosParser.T__14, NomosParser.T__15, NomosParser.T__16, NomosParser.NUM, NomosParser.FUNC, NomosParser.EMPTYSTR]:
+            elif token in [11, 12, 13, 14, 15, 16, 17, 18, 25, 26, 31, 32, 33]:
                 localctx = NomosParser.MathRecContext(self, localctx)
                 self._ctx = localctx
                 _prevctx = localctx
-                self.state = 158
+                self.state = 167
                 self.record()
                 pass
             else:
                 raise NoViableAltException(self)
 
             self._ctx.stop = self._input.LT(-1)
-            self.state = 166
+            self.state = 175
             self._errHandler.sync(self)
-            _alt = self._interp.adaptivePredict(self._input,12,self._ctx)
+            _alt = self._interp.adaptivePredict(self._input,13,self._ctx)
             while _alt!=2 and _alt!=ATN.INVALID_ALT_NUMBER:
                 if _alt==1:
                     if self._parseListeners is not None:
@@ -1540,22 +1654,22 @@ class NomosParser ( Parser ):
                     localctx = NomosParser.MathBinaryContext(self, NomosParser.MathContext(self, _parentctx, _parentState))
                     localctx.left = _prevctx
                     self.pushNewRecursionContext(localctx, _startState, self.RULE_math)
-                    self.state = 161
+                    self.state = 170
                     if not self.precpred(self._ctx, 2):
                         from antlr4.error.Errors import FailedPredicateException
                         raise FailedPredicateException(self, "self.precpred(self._ctx, 2)")
-                    self.state = 162
+                    self.state = 171
                     _la = self._input.LA(1)
-                    if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << NomosParser.PLUS) | (1 << NomosParser.MINUS) | (1 << NomosParser.MULT) | (1 << NomosParser.DIV))) != 0)):
+                    if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 2013265920) != 0)):
                         self._errHandler.recoverInline(self)
                     else:
                         self._errHandler.reportMatch(self)
                         self.consume()
-                    self.state = 163
+                    self.state = 172
                     localctx.right = self.math(3) 
-                self.state = 168
+                self.state = 177
                 self._errHandler.sync(self)
-                _alt = self._interp.adaptivePredict(self._input,12,self._ctx)
+                _alt = self._interp.adaptivePredict(self._input,13,self._ctx)
 
         except RecognitionException as re:
             localctx.exception = re
@@ -1567,6 +1681,7 @@ class NomosParser ( Parser ):
 
 
     class FuncParamContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1609,22 +1724,22 @@ class NomosParser ( Parser ):
         localctx = NomosParser.FuncParamContext(self, self._ctx, self.state)
         self.enterRule(localctx, 24, self.RULE_funcParam)
         try:
-            self.state = 174
+            self.state = 183
             self._errHandler.sync(self)
-            la_ = self._interp.adaptivePredict(self._input,13,self._ctx)
+            la_ = self._interp.adaptivePredict(self._input,14,self._ctx)
             if la_ == 1:
                 self.enterOuterAlt(localctx, 1)
-                self.state = 169
+                self.state = 178
                 localctx.param = self.record()
                 pass
 
             elif la_ == 2:
                 self.enterOuterAlt(localctx, 2)
-                self.state = 170
+                self.state = 179
                 localctx.param = self.record()
-                self.state = 171
+                self.state = 180
                 self.match(NomosParser.COMMA)
-                self.state = 172
+                self.state = 181
                 self.funcParam()
                 pass
 
@@ -1639,6 +1754,7 @@ class NomosParser ( Parser ):
 
 
     class CmpOpContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1689,9 +1805,9 @@ class NomosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 176
+            self.state = 185
             _la = self._input.LA(1)
-            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & ((1 << NomosParser.LSS) | (1 << NomosParser.LSQ) | (1 << NomosParser.GRT) | (1 << NomosParser.GRQ) | (1 << NomosParser.EQL) | (1 << NomosParser.NEQ))) != 0)):
+            if not((((_la) & ~0x3f) == 0 and ((1 << _la) & 69269232549888) != 0)):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
@@ -1706,6 +1822,7 @@ class NomosParser ( Parser ):
 
 
     class CommonvarContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1740,9 +1857,9 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 28, self.RULE_commonvar)
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 178
-            self.match(NomosParser.T__9)
-            self.state = 179
+            self.state = 187
+            self.match(NomosParser.T__10)
+            self.state = 188
             self.match(NomosParser.NUM)
         except RecognitionException as re:
             localctx.exception = re
@@ -1754,6 +1871,7 @@ class NomosParser ( Parser ):
 
 
     class InpvarContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1789,14 +1907,14 @@ class NomosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 181
+            self.state = 190
             _la = self._input.LA(1)
-            if not(_la==NomosParser.T__10 or _la==NomosParser.T__11):
+            if not(_la==12 or _la==13):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 182
+            self.state = 191
             self.match(NomosParser.NUM)
         except RecognitionException as re:
             localctx.exception = re
@@ -1808,6 +1926,7 @@ class NomosParser ( Parser ):
 
 
     class OutvarContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1843,14 +1962,14 @@ class NomosParser ( Parser ):
         self._la = 0 # Token type
         try:
             self.enterOuterAlt(localctx, 1)
-            self.state = 184
+            self.state = 193
             _la = self._input.LA(1)
-            if not(_la==NomosParser.T__12 or _la==NomosParser.T__13):
+            if not(_la==14 or _la==15):
                 self._errHandler.recoverInline(self)
             else:
                 self._errHandler.reportMatch(self)
                 self.consume()
-            self.state = 185
+            self.state = 194
             self.match(NomosParser.NUM)
         except RecognitionException as re:
             localctx.exception = re
@@ -1862,6 +1981,7 @@ class NomosParser ( Parser ):
 
 
     class FeatureContext(ParserRuleContext):
+        __slots__ = 'parser'
 
         def __init__(self, parser, parent:ParserRuleContext=None, invokingState:int=-1):
             super().__init__(parent, invokingState)
@@ -1930,23 +2050,23 @@ class NomosParser ( Parser ):
         self.enterRule(localctx, 34, self.RULE_feature)
         self._la = 0 # Token type
         try:
-            self.state = 190
+            self.state = 199
             self._errHandler.sync(self)
             token = self._input.LA(1)
-            if token in [NomosParser.T__14]:
+            if token in [16]:
                 localctx = NomosParser.LlvlFeatureContext(self, localctx)
                 self.enterOuterAlt(localctx, 1)
-                self.state = 187
-                self.match(NomosParser.T__14)
-                self.state = 188
+                self.state = 196
+                self.match(NomosParser.T__15)
+                self.state = 197
                 self.match(NomosParser.NUM)
                 pass
-            elif token in [NomosParser.T__15, NomosParser.T__16]:
+            elif token in [17, 18]:
                 localctx = NomosParser.HlvlFeatureContext(self, localctx)
                 self.enterOuterAlt(localctx, 2)
-                self.state = 189
+                self.state = 198
                 _la = self._input.LA(1)
-                if not(_la==NomosParser.T__15 or _la==NomosParser.T__16):
+                if not(_la==17 or _la==18):
                     self._errHandler.recoverInline(self)
                 else:
                     self._errHandler.reportMatch(self)
@@ -1978,7 +2098,7 @@ class NomosParser ( Parser ):
 
     def expr_sempred(self, localctx:ExprContext, predIndex:int):
             if predIndex == 0:
-                return self.precpred(self._ctx, 2)
+                return self.precpred(self._ctx, 3)
          
 
     def math_sempred(self, localctx:MathContext, predIndex:int):
