@@ -1,0 +1,8 @@
+import transpiler;
+input x1;
+output d1;
+{
+d1 = transpiler.transpile(x1, "java", "py")
+}
+
+ensures numLoops(x1, "java") == numLoops(d1, "py");

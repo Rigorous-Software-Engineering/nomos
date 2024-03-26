@@ -1,0 +1,11 @@
+import transpiler;
+input x1;
+var x2 := addParam(x1, "java");
+output d1;
+output d2;
+{
+d1 = transpiler.transpile(x1, "java", "py")
+d2 = transpiler.transpile(x2, "java", "py")
+}
+
+ensures compiles(d1, "py") && compiles(d2, "py") ==> retValues(d1, "py") == retValues(d2, "py");

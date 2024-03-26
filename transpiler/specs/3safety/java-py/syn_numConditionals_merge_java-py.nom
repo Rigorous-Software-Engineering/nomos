@@ -1,0 +1,14 @@
+import transpiler;
+input x1;
+input x2;
+var x3 := merge(x1, x2);
+output d1;
+output d2;
+output d3;
+{
+d1 = transpiler.transpile(x1, "java", "py")
+d2 = transpiler.transpile(x2, "java", "py")
+d3 = transpiler.transpile(x3, "java", "py")
+}
+
+ensures numConditionals(d3, "py") == numConditionals(d2, "py") + numConditionals(d1, "py") + 1;

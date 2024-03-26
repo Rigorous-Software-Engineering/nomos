@@ -1,11 +1,11 @@
 grammar Nomos;
 
-spec 
-  : import_ input_* vars_* precondition* output* program postcondition* 
+spec
+  : import_ input_* vars_* precondition* output* program vars_* postcondition*
 ;
 
-import_ 
-  : 'import ' dataset=('german_credit' | 'compas' | 'mnist' | 'speech_command' | 'hotel_review' | 'lunar' | 'bipedal') SEMICOLON
+import_
+  : 'import ' dataset=('german_credit' | 'compas' | 'mnist' | 'speech_command' | 'hotel_review' | 'lunar' | 'bipedal' | 'transpiler') SEMICOLON
 ;
 
 input_
@@ -24,16 +24,16 @@ program
   : prog=PROGRAM
 ;
 
-assignment 
+assignment
   : left=record ASS right_rec=record
   | left=record ASS right_math=math
 ;
 
-precondition 
+precondition
   : REQUIRES expr SEMICOLON
 ;
 
-postcondition 
+postcondition
   : ENSURES expr SEMICOLON
 ;
 
@@ -41,16 +41,19 @@ expr
   : NOT expr                                # exprNot
   | LBR expr RBR                            # exprPrn
   | left=expr (AND | OR | IMPL) right=expr  # exprBinary
-  | left=record op=cmpOp right=record       # exprPred
+  | left=math op=cmpOp right=math       # exprPred
+  | record       # exprRec
 ;
 
-record 
+record
   : NUM                                   # recNum
+  | STRING                                # recStr
+  | NULL                                  # recNull
   | EMPTYSTR                              # recEmptyStr
   | ( inpvar | outvar | commonvar)        # recVar
   | feature                               # recFtr
+  | func=FUNC LBR  params=funcParam RBR   # recFunc
   | var=inpvar '.' ftr=feature            # recVarFtr
-  | func=FUNC LBR  params=funcParam RBR   # recFunc 
   | var=inpvar (LSBR assignment RSBR)+    # recFtrAss
 ;
 
@@ -67,32 +70,32 @@ funcParam
 ;
 
 cmpOp
-  : LSQ 
-  | GRQ 
-  | LSS 
-  | GRT 
-  | EQL 
+  : LSQ
+  | GRQ
+  | LSS
+  | GRT
+  | EQL
   | NEQ
 ;
 
-commonvar 
+commonvar
   : 'v' NUM
 ;
 
-inpvar 
-  : ('x'|'s') NUM 
+inpvar
+  : ('x'|'s') NUM
 ;
 
-outvar 
-  : ('d'|'o')  NUM 
+outvar
+  : ('d'|'o')  NUM
 ;
 
-feature 
+feature
   : 'f' NUM            # llvlFeature
   | ( 'pos' | 'neg' )  # hlvlFeature
 ;
 
-PROGRAM : 
+PROGRAM :
   LCBR
   .*?
   RCBR
@@ -103,6 +106,11 @@ OUTPUT : 'output' ;
 VARKW : 'var' ;
 REQUIRES : 'requires' ;
 ENSURES : 'ensures' ;
+NULL : 'null' ;
+
+// WATCHOUT: keywords have to come before this
+// https://github.com/antlr/antlr4/blob/master/doc/predicates.md#predicates-in-lexer-rules
+FUNC : [A-Za-z]+ ;
 
 PLUS  : '+' ;
 MINUS : '-' ;
@@ -111,9 +119,12 @@ DIV   : '/' ;
 
 NUM :   '-'?[0-9]+ ('.' [0-9]+)? ([eE] [+-]? [0-9]+)? ;
 
-FUNC : [A-Za-z-]+ ;
 
 EMPTYSTR : '""' ;
+STRING 
+  : '"' [A-Za-z]+ '"'
+  | '\'' [A-Za-z]+ '\''
+;
 
 LCBR : '{' ;
 RCBR : '}' ;

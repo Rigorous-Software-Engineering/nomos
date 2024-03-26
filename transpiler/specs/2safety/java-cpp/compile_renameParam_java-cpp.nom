@@ -1,0 +1,12 @@
+import transpiler;
+input x1;
+var x2 := renameParam(x1, "java");
+output d1;
+output d2;
+{
+d1 = transpiler.transpile(x1, "java", "cpp")
+d2 = transpiler.transpile(x2, "java", "cpp")
+}
+
+ensures compiles(d1, "cpp") == compiles(d2, "cpp");
+

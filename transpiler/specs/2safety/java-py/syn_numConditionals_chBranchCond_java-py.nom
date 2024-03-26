@@ -1,0 +1,12 @@
+import transpiler;
+input x1;
+var x2 := chBranchCond(x1, "java");
+requires x2 != null;
+output d1;
+output d2;
+{
+d1 = transpiler.transpile(x1, "java", "py")
+d2 = transpiler.transpile(x2, "java", "py")
+}
+
+ensures numConditionals(d1, "py") == numConditionals(d2, "py");

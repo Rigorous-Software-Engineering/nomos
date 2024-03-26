@@ -1,13 +1,9 @@
+import os 
 import sys
 from antlr4 import *
 from lang.NomosLexer import NomosLexer
 from lang.NomosParser import NomosParser
 from lang.MyNomosVisitor import MyNomosVisitor
-
-def initializeHarness(outfile):
-    outfile.write("import sys\n")
-    outfile.write("import copy\n")
-    outfile.write("import random\n\n")
 
 def main(argv):
     input_stream = FileStream(argv[1])
@@ -18,8 +14,16 @@ def main(argv):
     
     benchmark = argv[1].split("/")[0]
     spec = argv[1].split("/")[-1].split(".")[0]
-    outfile = open("%s/harness_%s.py" % (benchmark, spec), "w")
-    initializeHarness(outfile)
+    if benchmark == "transpiler":
+        assert len(argv) == 3, "Please, provide beam size in addition to path to spec."
+        prop_order = argv[1].split("/")[-3]
+        beam_size = argv[-1]
+        
+        os.makedirs(os.path.dirname("%s/harnesses/bs_%s/%s/harness_%s.py" % (benchmark, beam_size, prop_order, spec)), exist_ok=True)
+        outfile = open("%s/harnesses/bs_%s/%s/harness_%s.py" % (benchmark, beam_size, prop_order, spec), "w")
+    else:
+        assert len(argv) == 2, "Please, provide path to spec only."
+        outfile = open("%s/harness_%s.py" % (benchmark, spec), "w")
 
     visitor = MyNomosVisitor(outfile)
     _ = visitor.visit(tree)

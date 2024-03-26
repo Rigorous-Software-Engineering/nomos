@@ -1,0 +1,11 @@
+import transpiler;
+input x1;
+var x2 := addParam(x1, "java");
+output d1;
+output d2;
+{
+d1 = transpiler.transpile(x1, "java", "py")
+d2 = transpiler.transpile(x2, "java", "py")
+}
+
+ensures numConditionals(d2, "py") == numConditionals(d1, "py");

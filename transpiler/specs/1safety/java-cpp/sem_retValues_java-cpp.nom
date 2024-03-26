@@ -1,0 +1,9 @@
+import transpiler;
+input x1;
+requires compiles(x1, "java");
+output d1;
+{
+d1 = transpiler.transpile(x1, "java", "cpp")
+}
+
+ensures compiles(d1, "cpp") ==> retValues(x1, "java") == retValues(d1, "cpp");

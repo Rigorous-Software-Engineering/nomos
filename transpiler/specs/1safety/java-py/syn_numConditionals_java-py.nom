@@ -1,0 +1,8 @@
+import transpiler;
+input x1;
+output d1;
+{
+d1 = transpiler.transpile(x1, "java", "py")
+}
+
+ensures numConditionals(x1, "java") == numConditionals(d1, "py");

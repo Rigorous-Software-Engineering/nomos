@@ -1,0 +1,14 @@
+import transpiler;
+input x1;
+input x2;
+var x3 := merge(x1, x2);
+output d1;
+output d2;
+output d3;
+{
+d1 = transpiler.transpile(x1, "java", "cpp")
+d2 = transpiler.transpile(x2, "java", "cpp")
+d3 = transpiler.transpile(x3, "java", "cpp")
+}
+
+ensures numConditionals(d3, "cpp") == numConditionals(d2, "cpp") + numConditionals(d1, "cpp") + 1;
